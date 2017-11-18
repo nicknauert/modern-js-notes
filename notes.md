@@ -32,6 +32,33 @@ An interesting thing about object creation. When one is created, is is assigned 
 
 This link is continous. If the original object is changed, all copies will be affected as well. Changing the original affects the space in memory, therefore any reference pointed at that space will inherit the changes.
 
+---
+**First Class Functions**
+
+```
+var sum = function( x, y){
+    return x + y;
+}
+```
+
+```
+var a = sum
+```
+
+Both of these are pointing to the same space in memory.
+
+```
+var run = function(z){
+    z()
+};
+
+run(a);
+```
+
+run is a function that takes another function as an argument, then executes it. Despite being inside another variable and function, `run(a)` still points to the original space of `sum`, retaining all properties of it.
+
+
+**Invoking Functions**
 
 
 
