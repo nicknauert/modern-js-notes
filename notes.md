@@ -60,5 +60,39 @@ run is a function that takes another function as an argument, then executes it. 
 
 **Invoking Functions**
 
+Ways to Invoke
+- As a function
+- As a method
+- As a constructor
+- Indirectly using call() and apply()
+
+Every function, in addition to the parameters that are passed into it, recieve two additional parameters. `this` and `arguments`. Each of the ways to invoke the method affect what `this` refers to.
 
 
+*Example of this and arguments at work*
+
+```
+var test = function(val) {
+    console.log(val)
+}
+```
+
+Calling `test(3)` will log `3` of course. But what if you called `test(3, 4, 5)`? That would still only log `3`. Because the function was only set up to recieve a single parameter.
+
+```
+var test = function(val) {
+    console.log(this) //logs Window
+    console.log(val)
+    console.log(arguments) //logs an array containing each argument.
+}
+```
+
+Above is an updated version of the function, to demonstrate the values of `this` and `arguments`. So if we wanted to make the function return the sum of all arguments passed into it, we would write this:
+
+```
+var test = function(val) {
+    let sum = 0;
+    arguments.forEach( arg => sum += arg)
+    return sum
+}
+```
