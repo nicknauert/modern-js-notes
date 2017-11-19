@@ -102,12 +102,6 @@ Because `arguments` is only an array*like* object, we need to dump the values in
 
 
 
-**Object Constructor for Defining Functions**
+**Understanding this**
 
-Example:
-```
-var obj = new Object();
-obj.firstName = "Nick"
-obj.lastName = "Nauert"
-```
-
+`this` is determined at runtime. 
