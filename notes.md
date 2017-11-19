@@ -92,7 +92,22 @@ Above is an updated version of the function, to demonstrate the values of `this`
 ```
 var test = function(val) {
     let sum = 0;
-    arguments.forEach( arg => sum += arg)
+    let args = [...arguments];
+    args.forEach( arg => sum += arg)
     return sum
 }
 ```
+
+Because `arguments` is only an array*like* object, we need to dump the values into a proper array in order to have access to all the handy dandy array methods.
+
+
+
+**Object Constructor for Defining Functions**
+
+Example:
+```
+var obj = new Object();
+obj.firstName = "Nick"
+obj.lastName = "Nauert"
+```
+
