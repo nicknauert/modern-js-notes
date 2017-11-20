@@ -108,3 +108,64 @@ Because `arguments` is only an array*like* object, we need to dump the values in
 `this` is not *the function*. Though it is established when the function is invoked, it is not the function.
 
 The binding of a value to this (this binding) can be either implicit (set by the js engine) or explicit (set by you);
+
+**this In Normally Invoked Functions**
+
+```
+let name = "global"
+
+let fun1 = function(){
+    let name = "fun1"
+    console.log('From fun1 --------');
+    console.log(this);
+    console.log(this.name);
+}
+
+fun1()
+```
+
+In this case, running fun1 will log `Window` and `"global"`. This is because fun1 is invoked in the global space, assigning Window to `this` and therefore `this.name` will be equal to global. 
+
+```
+let name = "global"
+
+let fun1 = function(){
+    let name = "fun1"
+    console.log('From fun1 --------');
+    console.log(this);
+    console.log(this.name);
+    return function fun2(){
+        let name = "fun2"
+        console.log('From fun2 --------');
+        console.log(this);
+        console.log(this.name);
+    }
+}
+
+fun1()();
+```
+
+In this case, the same thing is logged for both functions. They are both invoked in the global space, therefore they refer to the same function.
+
+```
+let name = "global"
+
+let runIt = function(fn){
+    let name = "runIt"
+    console.log('From runIt --------');
+    console.log(this);
+    console.log(this.name);
+    fn();
+}
+
+runIt(function fun2(){
+    let name = "fun2"
+    console.log('From fun2 --------');
+    console.log(this);
+    console.log(this.name);
+});
+
+```
+
+Same result above.
+
