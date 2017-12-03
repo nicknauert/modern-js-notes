@@ -11,7 +11,7 @@ Learn Modern Javascript
 
 ---
 
-### Advanced Functions and Objects
+## Advanced Functions and Objects
 *(A lot of this is review)*
 
 Functions are objects.
@@ -33,7 +33,7 @@ An interesting thing about object creation. When one is created, is is assigned 
 This link is continous. If the original object is changed, all copies will be affected as well. Changing the original affects the space in memory, therefore any reference pointed at that space will inherit the changes.
 
 ---
-### First Class Functions
+## First Class Functions
 
 ```
 var sum = function( x, y){
@@ -57,8 +57,8 @@ run(a);
 
 run is a function that takes another function as an argument, then executes it. Despite being inside another variable and function, `run(a)` still points to the original space of `sum`, retaining all properties of it.
 
-
-### Invoking Functions
+---
+## Invoking Functions
 
 Ways to Invoke
 - As a function
@@ -101,15 +101,15 @@ var test = function(val) {
 Because `arguments` is only an array*like* object, we need to dump the values into a proper array in order to have access to all the handy dandy array methods.
 
 
-
-### Understanding this
+---
+## Understanding this
 
 `this` is determined at runtime, when a function is invoked. Determined by how a function is invoked, not where the function is defined. `this` is a reference to the object.
 `this` is not *the function*. Though it is established when the function is invoked, it is not the function.
 
 The binding of a value to this (this binding) can be either implicit (set by the js engine) or explicit (set by you);
 
-**this In Normally Invoked Functions**
+### this In Normally Invoked Functions
 
 ```
 let name = "global"
@@ -168,4 +168,6 @@ runIt(function fun2(){
 ```
 
 Same result above.
+
+### this In Method Invoked Functions
 
