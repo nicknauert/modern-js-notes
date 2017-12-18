@@ -169,5 +169,13 @@ runIt(function fun2(){
 
 Same result above.
 
-### this In Method Invoked Functions
+## Under Standing Prototypes
+
+- Most objects are linked to other objects. That linked object is called the prototype.
+- Objects inherit properties and methods from it's prototype ancestry.
+- A prototype is automatically assigned to any object.
+- You can define and objects prototype.
+- You can change properties and methods of a prototype.
+
+
 
