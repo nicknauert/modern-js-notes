@@ -169,7 +169,7 @@ runIt(function fun2(){
 
 Same result above.
 
-## Under Standing Prototypes
+## Understanding Prototypes
 
 - Most objects are linked to other objects. That linked object is called the prototype.
 - Objects inherit properties and methods from it's prototype ancestry.
@@ -177,5 +177,93 @@ Same result above.
 - You can define and objects prototype.
 - You can change properties and methods of a prototype.
 
+```
+let obj = {};
+"toString" in obj;
+//returns true because toString is part of the prototype.
+
+obj.hasOwnProperty("toString);
+//returns false, because hasOwnProp checks whether the property is defined in the object.
+
+dir(date);
+// Allows you to inspect date object. Prototype is an Object.
+
+obj.toString = function(){
+    console.log("toString Function");
+}
+
+obj.toString();
+// "toString Function"
+// Defined properties will overwrite prototypal properties
+
+```
+
+### The Prototype of Function
+```
+let test = function(){
+    console.log('test');
+}
+
+dir(test);
+```
+
+Inspecting `test` will show that functions have both a __proto__ as well as a `prototype` property. `prototype` is used for if the function is used as a constructor. __proto__ includes `apply` and `call`. These are used to change the value of this upon calling the function.
+
+## Using call and apply function methods
+
+Using either of these methods changes the binding of `this`. Using them allows you to invoke a function as if it were a method of some other object. 
+
+- Using call
+    - function.call(this, arg1 arg2)
+    - First arg is an object that will become the value of `this`
+    - One or more arguments to be sent to the function may follow
+- Using apply
+    - function.apply(this, [arg1, arg2])
+    - First arg is an object that will become the value of this
+    - More args to be sent in a single array
 
 
+```
+let greeting = function(){
+    console.log('Good morning')
+}
+
+greeting();
+greeting.call();
+greeting.apply();
+```
+All of these console log 'Good morning.'
+
+```
+var user1 = {
+    firstName: "Nick",
+    lastName: "Nauert",
+    fullName: function(){
+        return this.firstName + " " + this.lastName;
+    }
+}
+
+var user2 = {
+    firstName: "Clint",
+    lastName: "Eastwood",
+    fullName: function(){
+        return this.firstName + " " + this.lastName;
+    }
+}
+
+let greeting = function(term, punct) {
+    console.log(term + " " + this.firstName + punct);
+}
+
+greeting.call(user2, "Do you feel lucky", "?");
+greeting.apply(user2,["Do you feel lucky", "?"]);
+```
+This will return "Do you feel lucky Clint Eastwood?" By using call, you have reassigned the value of this inside of the greeting function. The value of it will be assigned to the object passed in via the call method. The apply version works exactly the same, except your arguments are passed in as an array.
+
+Here's a weird one.
+
+```
+user1.fullName.call(user2);
+```
+
+This will return user2's full name. Even though the method is invoked on user1, the call method overwrites that entirely.
